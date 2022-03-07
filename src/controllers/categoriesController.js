@@ -1,4 +1,4 @@
-import db from "../database.js";
+import db from "../db.js";
 
 export async function getCategory (req,res){
     const result = await db.query('SELECT * FROM categories');

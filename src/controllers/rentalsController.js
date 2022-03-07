@@ -106,7 +106,7 @@ export async function postIdRentals(req, res) {
     }
 }
 
-export async function deleteIdRental(req, res) {
+export async function deleteIdRentals(req, res) {
     const { id } = req.params;
 
     try {

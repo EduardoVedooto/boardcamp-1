@@ -1,4 +1,4 @@
-import db from "../database.js";
+import db from "../db.js";
 
 export async function getCustomers(req, res) {
   if (req.query.cpf) {
@@ -38,17 +38,22 @@ export async function putCustomers(req, res){
   res.sendStatus(200);
 }
 
-function verifyData(phone,birthday,res,cpf){
-  if (phone.length<10 || phone.length>11){
-    return res.sendStatus(422);
-   }
-   const isValidDate = Date.parse(birthday);
-   if(isNaN(isValidDate)){
-     return res.sendStatus(400);
-   }
- 
-   const existingUser = await db.query(`SELECT * FROM customers WHERE cpf=$1`,[cpf]);
-   if(existingUser){
-     return res.sendStatus(409);
-   }
+async function  verifyData(phone,birthday,res,cpf){
+  try{
+    if (phone.length<10 || phone.length>11){
+      return res.sendStatus(422);
+     }
+     const isValidDate = Date.parse(birthday);
+     if(isNaN(isValidDate)){
+       return res.sendStatus(400);
+     }
+   
+     const existingUser = await db.query(`SELECT * FROM customers WHERE cpf=$1`,[cpf]);
+     if(existingUser){
+       return res.sendStatus(409);
+     }
+  }catch(err){
+    console.log(err);
+  }
+
 }

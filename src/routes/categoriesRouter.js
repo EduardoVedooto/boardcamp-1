@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { getCategory, postCategory } from '../controllers/categoriesController.js'
 import categorySchema from "../schemas/categoriesSchema.js";
-import validateSchemaMiddleware from '../middlewares/validateSchemaMiddleware';
+import validateSchemaMiddleware from '../middlewares/validateSchemaMiddleware.js';
 
 
 

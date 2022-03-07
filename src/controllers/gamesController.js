@@ -1,4 +1,4 @@
-import db from "../database.js";
+import db from "../db.js";
 
 export async function getGame(req, res) {
   if (req.query.name) {
